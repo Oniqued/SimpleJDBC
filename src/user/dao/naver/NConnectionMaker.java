@@ -1,12 +1,15 @@
-package user.dao;
+package user.dao.naver;
+
+import user.dao.ConnectionMaker;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class NUserDao {
+public class NConnectionMaker implements ConnectionMaker {
 
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+    @Override
+    public Connection makeConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.mariadb.jdbc.Driver");
         Connection c = DriverManager.getConnection(
                 "jdbc:mariadb://localhost:3306/springbook", "root", "1234");
