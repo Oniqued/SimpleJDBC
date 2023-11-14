@@ -11,6 +11,18 @@ public class UserDao {
         this.connectionMaker = connectionMaker;
     }
 
+    public void init() throws ClassNotFoundException, SQLException {
+        Connection c = connectionMaker.makeConnection();
+        PreparedStatement ps = c.prepareStatement(
+                "truncate table users"
+        );
+
+        ps.executeUpdate();
+
+        ps.close();
+        c.close();
+    }
+
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = connectionMaker.makeConnection();
 
